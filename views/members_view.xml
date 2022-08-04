@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Change Tree View on Membership member -->
+    <record model="ir.ui.view" id="membership.membership_members_tree">
+        <field name="arch" type="xml">
+            <tree string="Members">
+                <field name="name" string="Nama"/>
+                <field name="gender" string="L/P"/>
+                <field name="date_of_birth" string="Tanggal Lahir"/>
+                <field name="status_menikah" string="Status"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Change Action on Membership member -->
+    <record model="ir.actions.act_window" id="membership.action_membership_members">
+        <field name="name">Members</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>      
+    </record>
+
+    <record model="ir.actions.act_window.view" id="membership.action_membership_members_view_tree">
+        <field name="sequence" eval="1"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="membership.action_membership_members_view_kanban">
+        <field name="sequence" eval="2"/>
+    </record>
+
+
+    <!-- Menu -->
+    <menuitem
+        id="menu_membership_sub"
+        name="Members"
+        parent="membership.menu_membership"
+        action="membership.action_membership_members"
+        sequence="0"/>
+
+
+</odoo>

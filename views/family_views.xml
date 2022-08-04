@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <!-- Inherite Field baru kedalam form partner -->
+    <record id="view_family_form_inherite" model="ir.ui.view">
+        <field name="name">res.partner.family.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="gender" string="Jenis Kelamin"/>
+                <field name="date_of_birth" string="Tanggal Lahir"/>
+                <field name="baptis" string="Tanggal Baptis"/>
+                <field name="sidi" string="Tanggal Sidi"/>
+                <!-- Informasi Menikah -->
+                <field name="status_menikah"/>
+                <field name="married" string="Tanggal Menikah" attrs="{'invisible': [('status_menikah', '!=', 'menikah')]}"/>
+                <field name="pasangan" string="Nama Pasangan" attrs="{'invisible': [('status_menikah', '!=', 'menikah')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Default view untuk modul family -->
+    <record id="view_family_tree" model="ir.ui.view">
+        <field name="name">family.family.tree</field>
+        <field name="model">family.family</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="count"/>  
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_family_form" model="ir.ui.view">
+        <field name="name">family.family.form</field>
+        <field name="model">family.family</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>  
+                        <group>
+                            <field name="name"/>
+                            <field name="alamat"/>
+                            <field name="kelurahan"/>
+                            <field name="kecamatan"/>
+                        </group>
+                        <group>
+                            <field name="nohp"/>
+                            <field name="sektor"/>
+                            <field name="status_rumah" widget="radio"/>  
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="List Keluarga" name="family_list_keluarga">
+                            <field name="list_keluarga_ids">
+                                <tree>
+                                    <field name="member_id"/>
+                                    <field name="gender"/>
+                                    <field name="relation"/>
+                                    <field name="date_of_birth"/>
+                                    <field name="baptis"/>
+                                    <field name="sidi"/>
+                                    <field name="married"/>
+                                    <field name="job"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="member_id"/>
+                                        <field name="gender"/>
+                                        <field name="relation"/>
+                                        <field name="date_of_birth"/>
+                                        <field name="baptis"/>
+                                        <field name="sidi"/>
+                                        <field name="married"/>
+                                        <field name="job"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>  
+            </form>
+        </field>
+    </record>
+
+    <record id="action_family" model="ir.actions.act_window">
+        <field name="name">Family</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">family.family</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+              Create your first data!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem
+        id="menu_family"
+        name="Family"
+        parent="membership.menu_membership"
+        action="action_family"
+        sequence="1"/>
+
+</odoo>
