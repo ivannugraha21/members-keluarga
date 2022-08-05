@@ -43,8 +43,8 @@
                         <group>
                             <field name="name"/>
                             <field name="alamat"/>
-                            <field name="kelurahan"/>
                             <field name="kecamatan"/>
+                            <field name="kelurahan" attrs="{'invisible': [('kecamatan', '=', False)]}"/>
                         </group>
                         <group>
                             <field name="nohp"/>
@@ -86,7 +86,7 @@
     </record>
 
     <record id="action_family" model="ir.actions.act_window">
-        <field name="name">Family</field>
+        <field name="name">Keluarga</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">family.family</field>
         <field name="view_mode">tree,form</field>
@@ -101,7 +101,7 @@
     <!-- Menu -->
     <menuitem
         id="menu_family"
-        name="Family"
+        name="Keluarga"
         parent="membership.menu_membership"
         action="action_family"
         sequence="1"/>

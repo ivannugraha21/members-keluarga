@@ -26,10 +26,18 @@
     'data': [
         'security/ir.model.access.csv',
         #'views/views.xml',
+        #'data/local.kecamatan.csv',
+        #'data/local.kelurahan.csv',
+
+        #Config Licalization
+        'views/localization_kecamatan.xml',
+        'views/localization_kelurahan.xml',
+        'views/localization_sektor.xml',
+
         'views/family_views.xml',
         'views/members_view.xml',
         'views/pasangan_view.xml',
-        'views/local_view.xml'
+        #'views/local_view.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

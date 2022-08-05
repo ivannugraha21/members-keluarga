@@ -2,4 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access.family.family,access_family_family,md_family.model_family_family,base.group_user,1,1,1,1
 access.family.list.line,access_family_list_line,md_family.model_family_list_line,base.group_user,1,1,1,1
 access.res.pasangan,access_res_pasangan,md_family.model_res_pasangan,base.group_user,1,1,1,1
-access.local.localization,access_local_localization,md_family.model_local_localization,base.group_user,1,1,1,1
+access.local.kecamatan,access_local_kecamatan,md_family.model_local_kecamatan,base.group_user,1,1,1,1
+access.local.kelurahan,access_local_kelurahan,md_family.model_local_kelurahan,base.group_user,1,1,1,1
+access.local.sektor,access_local_sektor,md_family.model_local_sektor,base.group_user,1,1,1,1
