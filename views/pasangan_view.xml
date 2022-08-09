@@ -9,13 +9,15 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="married"/>  
+                <!-- <field name="married"/>  
                 <field name="alamat"/>
-                <field name="sektor"/>
+                <field name="sektor"/> -->
             </tree>
         </field>
     </record>
 
+    <!--  Form Mengunakan fungsi Related 
+    =============================================================================
     <record id="view_pasangan_form" model="ir.ui.view">
         <field name="name">res.pasangan.form</field>
         <field name="model">res.pasangan</field>
@@ -23,18 +25,44 @@
             <form>
                 <sheet>
                     <field name="name" invisible="1"/>
-                    <field name="married_con" invisible="0"/>
-                    <field name="status_menikah1" invisible="0"/>
-                    <field name="status_menikah2" invisible="0"/>
-                    <field name="pasangan1" invisible="0"/>
-                    <field name="pasangan2" invisible="0"/>
-                    <field name="gender_suami" invisible="0"/>
-                    <field name="gender_istri" invisible="0"/>
+                    <field name="married_con" invisible="1"/>
+                    <field name="status_suami" invisible="1"/>
+                    <field name="status_istri" invisible="1"/>
+                    <field name="pasangan1" invisible="1"/>
+                    <field name="pasangan2" invisible="1"/>
+                    <field name="gender_suami" invisible="1"/>
+                    <field name="gender_istri" invisible="1"/>
                     <group>
                         <group>
                             <field name="nama_suami" required="1"/>
                             <field name="nama_istri" required="1"/> 
-                            <field name="married" required="1"/>
+                            <field name="married" required="1"/> 
+                        </group>
+                        <group>
+                            <field name="alamat"/>
+                            <field name="sektor"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    =============================================================================
+    -->
+
+    <!-- From menggunakan fungsi Create dan Write -->
+    <record id="view_pasangan_form" model="ir.ui.view">
+        <field name="name">res.pasangan.form</field>
+        <field name="model">res.pasangan</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" invisible="1"/>
+                            <field name="nama_suami" required="1"/>
+                            <field name="nama_istri" required="1"/> 
+                            <field name="married" required="1"/> 
                         </group>
                         <group>
                             <field name="alamat"/>

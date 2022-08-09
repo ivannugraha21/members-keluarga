@@ -13,6 +13,8 @@
                 <field name="date_of_birth" string="Tanggal Lahir"/>
                 <field name="baptis" string="Tanggal Baptis"/>
                 <field name="sidi" string="Tanggal Sidi"/>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="before">
                 <!-- Informasi Menikah -->
                 <field name="status_menikah"/>
                 <field name="married" string="Tanggal Menikah" attrs="{'invisible': [('status_menikah', '!=', 'menikah')]}"/>
