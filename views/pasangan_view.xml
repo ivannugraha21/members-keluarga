@@ -9,9 +9,9 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <!-- <field name="married"/>  
+                <field name="married" string="Tanggal Menikah"/>
                 <field name="alamat"/>
-                <field name="sektor"/> -->
+                <field name="sektor"/>
             </tree>
         </field>
     </record>

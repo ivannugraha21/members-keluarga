@@ -7,7 +7,7 @@ class FamilyL(models.Model):
     _description = "Family List"
 
     ### Declare
-    name = fields.Many2one('res.partner', string="Keluarga")
+    name = fields.Many2one('res.partner', string="Keluarga", required=True)
     #status = fields.Char(string="Coba dulu")
     list_keluarga_ids = fields.One2many('family.list.line', 'list_keluarga_id', string="List Keluarga")
     #
@@ -67,7 +67,7 @@ class ListFamily(models.Model):
     _name = 'family.list.line'
     _description = "List member dari satu keluarga"
 
-    member_id = fields.Many2one("res.partner", string="Nama")
+    member_id = fields.Many2one("res.partner", string="Nama", required=True)
     gender = fields.Selection(related="member_id.gender", string="L/P", readonly=False)
     relation = fields.Selection([
         ('suami', 'Suami'),

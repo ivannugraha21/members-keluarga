@@ -57,7 +57,7 @@
                     <notebook>
                         <page string="List Keluarga" name="family_list_keluarga">
                             <field name="list_keluarga_ids">
-                                <tree>
+                                <tree editable="bottom">
                                     <field name="member_id"/>
                                     <field name="gender"/>
                                     <field name="relation"/>
