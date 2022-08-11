@@ -4,11 +4,13 @@
     <!-- Change Tree View on Membership member -->
     <record model="ir.ui.view" id="membership.membership_members_tree">
         <field name="arch" type="xml">
-            <tree string="Members">
+            <tree string="Members" multi_edit="1">
                 <field name="name" string="Nama"/>
                 <field name="gender" string="L/P"/>
                 <field name="date_of_birth" string="Tanggal Lahir"/>
-                <field name="status_menikah" string="Status"/>
+                <field name="ke" string="ke"/>
+                <field name="street" string="Alamat"/>
+                <field name="sektor" string="Sektor"/>
             </tree>
         </field>
     </record>

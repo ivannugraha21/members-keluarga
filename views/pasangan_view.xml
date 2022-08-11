@@ -7,48 +7,15 @@
         <field name="name">res.pasangan.tree</field>
         <field name="model">res.pasangan</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree multi_edit="1">
                 <field name="name"/>
                 <field name="married" string="Tanggal Menikah"/>
+                <field name="ke"/>
                 <field name="alamat"/>
                 <field name="sektor"/>
             </tree>
         </field>
     </record>
-
-    <!--  Form Mengunakan fungsi Related 
-    =============================================================================
-    <record id="view_pasangan_form" model="ir.ui.view">
-        <field name="name">res.pasangan.form</field>
-        <field name="model">res.pasangan</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <field name="name" invisible="1"/>
-                    <field name="married_con" invisible="1"/>
-                    <field name="status_suami" invisible="1"/>
-                    <field name="status_istri" invisible="1"/>
-                    <field name="pasangan1" invisible="1"/>
-                    <field name="pasangan2" invisible="1"/>
-                    <field name="gender_suami" invisible="1"/>
-                    <field name="gender_istri" invisible="1"/>
-                    <group>
-                        <group>
-                            <field name="nama_suami" required="1"/>
-                            <field name="nama_istri" required="1"/> 
-                            <field name="married" required="1"/> 
-                        </group>
-                        <group>
-                            <field name="alamat"/>
-                            <field name="sektor"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-    =============================================================================
-    -->
 
     <!-- From menggunakan fungsi Create dan Write -->
     <record id="view_pasangan_form" model="ir.ui.view">
@@ -74,7 +41,6 @@
         </field>
     </record>
 
-
     <record id="action_pasangan" model="ir.actions.act_window">
         <field name="name">Pasangan</field>
         <field name="type">ir.actions.act_window</field>
@@ -94,6 +60,6 @@
         name="Pasangan"
         parent="membership.menu_membership"
         action="action_pasangan"
-        sequence="2"/>
+        sequence="1"/>
 
 </odoo>
