@@ -25,6 +25,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        #'data/autoupdate.xml',
         'views/localization_kecamatan.xml',
         'views/localization_kelurahan.xml',
         'views/localization_sektor.xml',

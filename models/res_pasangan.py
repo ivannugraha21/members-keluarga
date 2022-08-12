@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
+from datetime import date
 
 class ResPasangan(models.Model):
     _name = "res.pasangan"
@@ -8,7 +9,7 @@ class ResPasangan(models.Model):
     name  = fields.Char(string="Suami & Istri", compute="update_field")
     nama_suami = fields.Many2one('res.partner', string="Suami", required=True)
     nama_istri = fields.Many2one('res.partner', string="Istri", required=True)
-    ke = fields.Integer(string="Ke")
+    ke = fields.Char(string="Ke", compute="calculate_date", store=True)
     married = fields.Date(string="Menikah", required=True)
     alamat = fields.Char(string="Alamat")
     sektor = fields.Many2one('local.sektor', string="Sektor")
@@ -22,6 +23,18 @@ class ResPasangan(models.Model):
                 rec.sektor = rec.nama_suami.sektor
             else:
                 rec.name = "Null"
+
+    @api.depends('married')
+    def calculate_date(self):
+        for rec in self:
+            today = date.today()
+            if rec.married:
+                # Check Ke
+                rec.ke = today.year - rec.married.year - ((today.month, today.day) < (rec.married.month, rec.married.day))
+                if int(rec.ke) < 1:
+                    rec.ke = False
+            else:
+                rec.ke = False
 
     #    
     @api.model
@@ -41,7 +54,8 @@ class ResPasangan(models.Model):
                 'status_menikah': 'menikah',
                 'gender': 'lakilaki',
                 'married': rec.married,
-                'pasangan': rec.nama_istri
+                'pasangan': rec.nama_istri,
+                'ke': rec.ke
                 })
             # Update Data Istri
             partner_istri = self.env['res.partner'].search([('id', '=', id_istri)], limit=1)
@@ -49,7 +63,8 @@ class ResPasangan(models.Model):
                 'status_menikah': 'menikah',
                 'gender': 'perempuan',
                 'married': rec.married,
-                'pasangan': rec.nama_suami
+                'pasangan': rec.nama_suami,
+                'ke': rec.ke
                 })           
         return rec
 
@@ -69,15 +84,17 @@ class ResPasangan(models.Model):
             'status_menikah': 'menikah',
             'gender': 'lakilaki',
             'married': self.married,
-            'pasangan': self.nama_istri
+            'pasangan': self.nama_istri,
+            #'ke': self.ke          <<< Data Ke disini berebda denga di member
             })
         # Update Data Istri
         partner_istri = self.env['res.partner'].search([('id', '=', id_istri)], limit=1)
         partner_istri.write({
-            'status_menikah': 'menikah',
+            'status_menikah': 'menikah',    
             'gender': 'perempuan',
             'married': self.married,
-            'pasangan': self.nama_suami
+            'pasangan': self.nama_suami,
+            #'ke': self.ke          <<< Data Ke disini berebda denga di member
             })
         return res
         

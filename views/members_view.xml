@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_res_partner_member_inherit_search" model="ir.ui.view">
+      <field name="name">res.partner.select.filter</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="membership.view_res_partner_member_filter"/>
+      <field name="arch" type="xml">
+        <xpath expr="//search" position="inside">
+          <filter string="Ulang Tahun" name="res_partner_bod_filter" 
+            domain="[('dob_month', '=', datetime.datetime.now().month), ('dob_day', '=', datetime.datetime.now().day)]"/>
+        </xpath>
+      </field>
+    </record>
+
     <!-- Change Tree View on Membership member -->
     <record model="ir.ui.view" id="membership.membership_members_tree">
         <field name="arch" type="xml">
-            <tree string="Members" multi_edit="1">
+            <tree string="Members">
                 <field name="name" string="Nama"/>
                 <field name="gender" string="L/P"/>
                 <field name="date_of_birth" string="Tanggal Lahir"/>
@@ -19,7 +31,7 @@
     <record model="ir.actions.act_window" id="membership.action_membership_members">
         <field name="name">Members</field>
         <field name="view_mode">tree,form</field>
-        <field name="context">{}</field>      
+        <field name="context">{"search_default_res_partner_bod_filter": 1}</field>  
     </record>
 
     <record model="ir.actions.act_window.view" id="membership.action_membership_members_view_tree">
