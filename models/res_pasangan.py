@@ -11,8 +11,13 @@ class ResPasangan(models.Model):
     nama_istri = fields.Many2one('res.partner', string="Istri", required=True)
     ke = fields.Char(string="Ke", compute="calculate_date", store=True)
     married = fields.Date(string="Menikah", required=True)
+    #
+    date_month = fields.Char(string="Bulan Lahir")
+    date_day = fields.Char(string="Tanggal Lahir")
+    #
     alamat = fields.Char(string="Alamat")
     sektor = fields.Many2one('local.sektor', string="Sektor")
+    #
     #
     @api.depends('nama_suami')
     def update_field(self):
@@ -33,6 +38,9 @@ class ResPasangan(models.Model):
                 rec.ke = today.year - rec.married.year - ((today.month, today.day) < (rec.married.month, rec.married.day))
                 if int(rec.ke) < 1:
                     rec.ke = False
+                #
+                self.date_month = self.married.month
+                self.date_day = self.married.day
             else:
                 rec.ke = False
 

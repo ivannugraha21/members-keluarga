@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <search string="Membership Partners">
                     <field name="alamat"/>
-                    <filter name="anniv" string="Anniversary" domain="[('ke' ,'!=', False)]"/>
+                    <filter name="anniv" string="Anniversary" domain="[('date_month', '=', datetime.datetime.now().month), ('date_day', '=', datetime.datetime.now().day)]"/>
                 </search>
             </field>
         </record>
