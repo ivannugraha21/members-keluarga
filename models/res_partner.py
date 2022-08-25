@@ -28,9 +28,10 @@ class ResPartner(models.Model):
 
     @api.depends('date_of_birth')
     def _get_month(self):
-        if self.date_of_birth:
-            self.dob_month = self.date_of_birth.month
-            self.dob_day = self.date_of_birth.day
+        for rec in self:
+            if rec.date_of_birth:
+                rec.dob_month = rec.date_of_birth.month
+                rec.dob_day = rec.date_of_birth.day
 
     
     @api.model
